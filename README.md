@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# This is a project made by the food lovers Peter, Alex
+# This is a project made by the food lovers Peter, Alex, and Austin
 
 ## Available Scripts
 
