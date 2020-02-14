@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # This is a project made by the food lovers Peter, Alex, and Austin
 
-## Food is good
+## Food is good - Austin Wu, 2020
 
 ## Available Scripts
 
