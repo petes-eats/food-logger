@@ -7,7 +7,7 @@ export default function allRecipes() {
     <div>
       <h1>All Recipes here for now</h1>
       <Link to="/singleRecipe">
-        <h1>Single Recipe Test</h1>
+        <h3>Single Recipe Test</h3>
       </Link>
     </div>
   );

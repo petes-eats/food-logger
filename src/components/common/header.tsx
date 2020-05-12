@@ -5,7 +5,7 @@ export default function head() {
   return (
     <nav>
       <NavLink to="/">
-        <h3>FOOD LOGGER</h3>
+        <h1>FOOD LOGGER</h1>
       </NavLink>
       <NavLink to="/allRecipes">
         <h3>View All Recipes</h3>
