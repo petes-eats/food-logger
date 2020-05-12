@@ -29,8 +29,6 @@ module.exports = {
 
   rules: {
     semi: 0,
-    prettier: {
-      semi: true,
-    },
+    "@typescript-eslint/no-use-before-define": "off",
   },
 };
