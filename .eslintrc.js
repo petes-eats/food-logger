@@ -29,11 +29,8 @@ module.exports = {
 
   rules: {
     semi: 0,
-    prettier: [
-      error,
-      {
-        semi: true,
-      },
-    ],
+    prettier: {
+      semi: true,
+    },
   },
 };
