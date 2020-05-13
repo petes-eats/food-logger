@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function head() {
+export default function head(): any {
   return (
     <nav>
       <NavLink to="/">
-        <h3>FOOD LOGGER</h3>
+        <h1>FOOD LOGGER</h1>
       </NavLink>
       <NavLink to="/allRecipes">
         <h3>View All Recipes</h3>
