@@ -33,7 +33,8 @@ export const SingleRecipe: React.FunctionComponent<any> = ({ recipeId }) => {
             return <li>{ingredient}</li>;
           })}
       </ul>
-      <h2>We will pull this with GraphQL...soon</h2>
+
+      <h2>{recipe.picture}</h2>
     </div>
   ) : null;
 };
