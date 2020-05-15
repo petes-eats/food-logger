@@ -14,19 +14,25 @@ const getSingleRecipe = (recipeId: number): Promise<Recipe> => {
   });
 };
 
-export const SingleRecipe: React.FunctionComponent<any> = (props) => {
+export const SingleRecipe: React.FunctionComponent<any> = ({ recipeId }) => {
   const emptyObj: any = {};
-  const [recipe, setRecipe] = React.useState(emptyObj);
+  const [recipe, setRecipe] = React.useState<Recipe | undefined>(undefined);
 
   React.useEffect(() => {
-    getSingleRecipe(props.match.params.recipeId)
+    getSingleRecipe(recipeId)
       .then((recipe) => setRecipe(recipe))
       .catch((error) => console.error(error));
   }, []);
-  console.log(props.match.params, "ALEX WHY");
+
   return recipe ? (
     <div>
       <h1>{recipe.name}</h1>
+      <ul>
+        {recipe.ingredients &&
+          recipe.ingredients.map((ingredient) => {
+            return <li>{ingredient}</li>;
+          })}
+      </ul>
       <h2>We will pull this with GraphQL...soon</h2>
     </div>
   ) : null;

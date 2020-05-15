@@ -7,7 +7,12 @@ import { SingleRecipe } from "./components/singleRecipe";
 const Routes: React.FunctionComponent = () => {
   return (
     <Switch>
-      <Route path="/allRecipes/:recipeId" component={SingleRecipe} />
+      <Route
+        path="/allRecipes/:recipeId"
+        render={({ match }) => (
+          <SingleRecipe recipeId={match.params.recipeId} />
+        )}
+      />
       <Route path="/allRecipes" component={AllRecipes} />
       <Route path="/" component={LandingPage} />
     </Switch>
