@@ -9,7 +9,7 @@ const RecipeCard: React.FunctionComponent<Recipe> = ({
   id,
 }: Recipe) => {
   return (
-    <div>
+    <div className="bg-blue-500 bg-opacity-75 m-2 p-3 rounded-lg flex content-center flex-col items-center">
       <Link to={`/allRecipes/${id}`}>
         <h3>{name}</h3>
       </Link>
