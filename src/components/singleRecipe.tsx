@@ -15,8 +15,7 @@ const getSingleRecipe = (recipeId: number): Promise<Recipe> => {
 };
 
 export const SingleRecipe: React.FunctionComponent<any> = ({ recipeId }) => {
-  const emptyObj: any = {};
-  const [recipe, setRecipe] = React.useState<Recipe | undefined>(undefined);
+  const [recipe, setRecipe] = React.useState<Recipe | null>(null);
 
   React.useEffect(() => {
     getSingleRecipe(recipeId)
@@ -30,7 +29,7 @@ export const SingleRecipe: React.FunctionComponent<any> = ({ recipeId }) => {
       <ul>
         {recipe.ingredients &&
           recipe.ingredients.map((ingredient) => {
-            return <li>{ingredient}</li>;
+            return <li key={recipe.id}>{ingredient}</li>;
           })}
       </ul>
 

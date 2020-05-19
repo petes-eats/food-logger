@@ -53,8 +53,7 @@ export const getRecipes = (recipes: Array<Recipe>): Promise<Array<Recipe>> => {
 };
 
 const AllRecipes: React.FunctionComponent<Element> = () => {
-  const typedArr: Array<Recipe> = [];
-  const [recipes, setRecipes] = React.useState(typedArr);
+  const [recipes, setRecipes] = React.useState<Recipe[] | null>(null);
 
   React.useEffect(() => {
     getRecipes(mockRecipes)
@@ -69,17 +68,18 @@ const AllRecipes: React.FunctionComponent<Element> = () => {
   return (
     <div>
       <h1>All Recipes here for now</h1>
-      {recipes.map((recipe) => {
-        return (
-          <RecipeCard
-            key={Math.random()}
-            id={recipe.id}
-            name={recipe.name}
-            description={recipe.description}
-            picture={recipe.picture}
-          />
-        );
-      })}
+      {recipes &&
+        recipes.map((recipe) => {
+          return (
+            <RecipeCard
+              key={Math.random()}
+              id={recipe.id}
+              name={recipe.name}
+              description={recipe.description}
+              picture={recipe.picture}
+            />
+          );
+        })}
     </div>
   );
 };
