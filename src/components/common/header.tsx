@@ -39,6 +39,7 @@ export default function head(): any {
               Browse Recipes
             </span>
           </NavLink>
+
           <NavLink to="/allRecipes">
             <span className="block mt-4 lg:inline-block text-lg lg:mt-0 text-teal-200 hover:text-white mr-4">
               Sign Up
