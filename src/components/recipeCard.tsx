@@ -9,9 +9,11 @@ const RecipeCard: React.FunctionComponent<Recipe> = ({
   id,
 }: Recipe) => {
   return (
-    <div>
+    <div className="bg-blue-500 bg-opacity-75 m-2 p-5 rounded-lg flex content-center flex-col items-center">
       <Link to={`/allRecipes/${id}`}>
-        <h3>{name}</h3>
+        <h3 className="font-bold text-xl text-teal-200 hover:text-white">
+          {name}
+        </h3>
       </Link>
       <p>{description}</p>
       <h3>Picture placehold text: {picture}</h3>

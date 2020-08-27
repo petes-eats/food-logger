@@ -14,14 +14,18 @@ const getSingleRecipe = (recipeId: number): Promise<Recipe> => {
   });
 };
 
-export const SingleRecipe: React.FunctionComponent<any> = ({ recipeId }) => {
+interface Props {
+  recipeId: number;
+}
+
+export const SingleRecipe: React.FunctionComponent<Props> = ({ recipeId }) => {
   const [recipe, setRecipe] = React.useState<Recipe | null>(null);
 
   React.useEffect(() => {
     getSingleRecipe(recipeId)
       .then((recipe) => setRecipe(recipe))
       .catch((error) => console.error(error));
-  }, []);
+  }, [recipeId]);
 
   return recipe ? (
     <div>

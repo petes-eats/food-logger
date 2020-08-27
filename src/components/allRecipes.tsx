@@ -38,6 +38,20 @@ export const mockRecipes: Array<Recipe> = [
     picture: "asd",
     ingredients: ["chives", "lentils", "garlic", "hand-pulled noodles"],
   },
+  {
+    id: 5,
+    name: "Pork thing5",
+    description: "lots of pork5",
+    picture: "asd",
+    ingredients: ["chives", "lentils", "garlic", "hand-pulled noodles"],
+  },
+  {
+    id: 6,
+    name: "Pork thing6",
+    description: "lots of pork6",
+    picture: "asd",
+    ingredients: ["chives", "lentils", "garlic", "hand-pulled noodles"],
+  },
 ];
 
 export const getRecipes = (recipes: Array<Recipe>): Promise<Array<Recipe>> => {
@@ -66,20 +80,22 @@ const AllRecipes: React.FunctionComponent<Element> = () => {
   }, []);
 
   return (
-    <div>
-      <h1>All Recipes here for now</h1>
-      {recipes &&
-        recipes.map((recipe) => {
-          return (
-            <RecipeCard
-              key={Math.random()}
-              id={recipe.id}
-              name={recipe.name}
-              description={recipe.description}
-              picture={recipe.picture}
-            />
-          );
-        })}
+    <div className="text-center">
+      <h1 className="text-3xl">Available recipes</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6">
+        {recipes &&
+          recipes.map((recipe) => {
+            return (
+              <RecipeCard
+                key={Math.random()}
+                id={recipe.id}
+                name={recipe.name}
+                description={recipe.description}
+                picture={recipe.picture}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };
