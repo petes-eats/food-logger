@@ -1,7 +1,9 @@
-import { Resolver, Query, ObjectType, Field } from "type-graphql";
+import { Resolver, Query } from "type-graphql";
 import "reflect-metadata";
 
-const mockRecipes: Array<Recipe> = [
+import { Recipe } from "../entities/recipe";
+
+const mockRecipes = [
   {
     id: 1,
     name: "Pork thing1",
@@ -57,22 +59,29 @@ export class TestResolver {
   allRecipes() {
     return mockRecipes;
   }
+
+  @Query(() => [Recipe])
+  recipes() {
+    const food = Recipe.find({ select: ["id", "name", "description"] });
+    console.log(food);
+    return food;
+  }
 }
 
-@ObjectType()
-class Recipe {
-  @Field(() => Number)
-  id: number;
+// @ObjectType()
+// class Recipe {
+//   @Field(() => Number)
+//   id: number;
 
-  @Field()
-  name: string;
+//   @Field()
+//   name: string;
 
-  @Field()
-  description: string;
+//   @Field()
+//   description: string;
 
-  @Field()
-  picture: string;
+//   @Field()
+//   picture: string;
 
-  @Field(() => [String])
-  ingredients: string[];
-}
+//   @Field(() => [String])
+//   ingredients: string[];
+// }

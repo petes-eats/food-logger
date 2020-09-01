@@ -3,7 +3,24 @@ const { ApolloServer } = require("apollo-server-express");
 const { buildSchema } = require("type-graphql");
 const { TestResolver } = require("./resolvers/test");
 
+import { createConnection } from "typeorm";
+
 const main = async () => {
+  await createConnection({
+    type: "postgres",
+    url: "postgres://focus@localhost/foodlogger",
+    // host: "localhost",
+    // port: 5432,
+    // username: "focus",
+    // database: "foodlogger",
+    entities: ["./src/entities/*{.ts, .js}"],
+    synchronize: true,
+  });
+
+  // await typeOrmConnection.connect().then(() => {
+  //   console.log("Connected to DB!");
+  // });
+
   const app = express();
 
   const apolloServer = new ApolloServer({
