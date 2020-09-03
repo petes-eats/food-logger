@@ -1,10 +1,10 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
-import { ObjectType, Field } from "type-graphql";
+import { ObjectType, Field, ID } from "type-graphql";
 
 @Entity()
 @ObjectType()
 export class Recipe extends BaseEntity {
-  @Field(() => Number)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 

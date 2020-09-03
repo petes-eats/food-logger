@@ -1,9 +1,59 @@
-import { Resolver, Query } from "type-graphql";
-import "reflect-metadata";
+import { Resolver, Query, Mutation, Arg } from "type-graphql";
 
 import { Recipe } from "../entities/recipe";
+import { CreateRecipeInput } from "../inputs/CreateRecipeInput";
 
-const mockRecipes = [
+@Resolver()
+export class TestResolver {
+  @Query(() => String)
+  hello() {
+    return "Hello!";
+  }
+
+  @Query(() => Number)
+  fugNumber() {
+    return 1337;
+  }
+
+  @Query(() => [Recipe])
+  allRecipes() {
+    return mockRecipes;
+  }
+
+  @Query(() => [Recipe])
+  recipes() {
+    const food = Recipe.find({ select: ["id", "name", "description"] });
+
+    return food;
+  }
+
+  @Mutation(() => Recipe)
+  async addRecipe(@Arg("data") data: CreateRecipeInput) {
+    const recipe = Recipe.create(data);
+    await recipe.save();
+    return recipe;
+  }
+}
+
+// @ObjectType()
+// class Recipe {
+//   @Field(() => Number)
+//   id: number;
+
+//   @Field()
+//   name: string;
+
+//   @Field()
+//   description: string;
+
+//   @Field()
+//   picture: string;
+
+//   @Field(() => [String])
+//   ingredients: string[];
+// }
+
+var mockRecipes = [
   {
     id: 1,
     name: "Pork thing1",
@@ -47,41 +97,3 @@ const mockRecipes = [
     ingredients: ["chives", "lentils", "garlic", "hand-pulled noodles"],
   },
 ];
-
-@Resolver()
-export class TestResolver {
-  @Query(() => String)
-  hello() {
-    return "Hello!";
-  }
-
-  @Query(() => [Recipe])
-  allRecipes() {
-    return mockRecipes;
-  }
-
-  @Query(() => [Recipe])
-  recipes() {
-    const food = Recipe.find({ select: ["id", "name", "description"] });
-    console.log(food);
-    return food;
-  }
-}
-
-// @ObjectType()
-// class Recipe {
-//   @Field(() => Number)
-//   id: number;
-
-//   @Field()
-//   name: string;
-
-//   @Field()
-//   description: string;
-
-//   @Field()
-//   picture: string;
-
-//   @Field(() => [String])
-//   ingredients: string[];
-// }
