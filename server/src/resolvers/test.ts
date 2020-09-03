@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Arg } from "type-graphql";
 
 import { Recipe } from "../entities/recipe";
 import { CreateRecipeInput } from "../inputs/CreateRecipeInput";
+import { UpdateRecipeInput } from "../inputs/UpdateRecipeInput";
 
 @Resolver()
 export class TestResolver {
@@ -27,11 +28,41 @@ export class TestResolver {
     return food;
   }
 
+  @Query(() => Recipe)
+  findRecipe(@Arg("id") id: number) {
+    return Recipe.findOne({ where: { id } });
+  }
+
   @Mutation(() => Recipe)
   async addRecipe(@Arg("data") data: CreateRecipeInput) {
     const recipe = Recipe.create(data);
     await recipe.save();
     return recipe;
+  }
+
+  @Mutation(() => Recipe)
+  async updateRecipe(
+    @Arg("id") id: number,
+    @Arg("data") data: UpdateRecipeInput
+  ) {
+    const foundRecipe = await Recipe.findOne({ where: { id } });
+
+    if (!foundRecipe) throw new Error("recipe not found");
+
+    Object.assign(foundRecipe, data);
+    await foundRecipe.save();
+    return foundRecipe;
+  }
+
+  @Mutation(() => Boolean)
+  async deleteRecipe(@Arg("id") id: number) {
+    const recipeToDelete = await Recipe.findOne({ where: { id } });
+
+    if (!recipeToDelete) throw new Error("recipe not found");
+
+    await recipeToDelete.remove();
+
+    return true;
   }
 }
 
