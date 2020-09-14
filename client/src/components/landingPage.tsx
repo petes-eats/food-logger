@@ -26,22 +26,34 @@ export default function landingPage(props: any): any {
       <h1>Landing Page</h1>
       <Carousel responsive={responsive}>
         <div>
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
           <span>Hello Alex</span>
           <span>Click for more!</span>
         </div>
         <div>
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
           <span>Hello Alex</span>
           <span>Click for more!</span>
         </div>
         <div>
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
           <span>Hello Alex</span>
           <span>Click for more!</span>
         </div>
         <div>
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
           <span>Hello Alex</span>
           <span>Click for more!</span>
         </div>
@@ -50,18 +62,30 @@ export default function landingPage(props: any): any {
       <div className="grid grid-cols-2">
         <div className="text-center bg-gray-200">Chicken Dishes</div>
         <div className="align-center">
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
         </div>
         <div className="align-center">
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
         </div>
         <div className="text-center bg-gray-200">Vegetarian</div>
         <div className="text-center bg-gray-200">Chicken Dishes</div>
         <div className="align-center">
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
         </div>
         <div className="align-center">
-          <img src="https://i.gyazo.com/382874084392664241454615805458c2.png"></img>
+          <img
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          ></img>
         </div>
         <div className="text-center bg-gray-200">Vegetarian</div>
       </div>
