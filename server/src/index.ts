@@ -2,6 +2,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { buildSchema } = require("type-graphql");
 const { TestResolver } = require("./resolvers/test");
+
 import "reflect-metadata";
 
 // previous start script
@@ -9,10 +10,12 @@ import "reflect-metadata";
 
 import { createConnection } from "typeorm";
 
+require("dotenv").config();
+
 const main = async () => {
   const typeOrmConnection = await createConnection({
     type: "postgres",
-    url: "postgres://alex@localhost/foodlogger",
+    url: `postgres://${process.env.DB_USER}@localhost/${process.env.DB_NAME}`,
     entities: ["./src/entities/*{.ts, .js}"],
     synchronize: true,
   });
