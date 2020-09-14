@@ -12,7 +12,7 @@ import { createConnection } from "typeorm";
 const main = async () => {
   await createConnection({
     type: "postgres",
-    url: "postgres://alex@localhost/foodlogger",
+    url: "postgres://focus@localhost/foodlogger",
     // host: "localhost",
     // port: 5432,
     // username: "focus",
