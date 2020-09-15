@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Recipe } from "./allRecipes";
+import { IRecipe } from "./allRecipes";
 
-const RecipeCard: React.FunctionComponent<Recipe> = ({
+const RecipeCard: React.FunctionComponent<IRecipe> = ({
   description,
   picture,
   name,
   id,
-}: Recipe) => {
+}: IRecipe) => {
   return (
     <div className="bg-blue-500 bg-opacity-75 m-2 p-5 rounded-lg flex content-center flex-col items-center">
       <Link to={`/allRecipes/${id}`}>

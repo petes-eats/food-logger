@@ -1,8 +1,8 @@
 import React from "react";
-import { Recipe } from "./allRecipes";
+import { IRecipe } from "./allRecipes";
 import { mockRecipes } from "./allRecipes";
 
-const getSingleRecipe = (recipeId: number): Promise<Recipe> => {
+const getSingleRecipe = (recipeId: number): Promise<IRecipe> => {
   return new Promise((resolve, reject) => {
     try {
       setTimeout(() => {
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const SingleRecipe: React.FunctionComponent<Props> = ({ recipeId }) => {
-  const [recipe, setRecipe] = React.useState<Recipe | null>(null);
+  const [recipe, setRecipe] = React.useState<IRecipe | null>(null);
 
   React.useEffect(() => {
     getSingleRecipe(recipeId)

@@ -13,16 +13,16 @@ import { createConnection } from "typeorm";
 require("dotenv").config();
 
 const main = async () => {
-  const typeOrmConnection = await createConnection({
+  await createConnection({
     type: "postgres",
     url: `postgres://${process.env.DB_USER}@localhost/${process.env.DB_NAME}`,
     entities: ["./src/entities/*{.ts, .js}"],
     synchronize: true,
   });
 
-  await typeOrmConnection.connect().then(() => {
-    console.log("Connected to DB!");
-  });
+  // await typeOrmConnection.connect().then(() => {
+  //   console.log("Connected to DB!");
+  // });
 
   const app = express();
 

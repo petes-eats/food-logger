@@ -23,7 +23,9 @@ export class TestResolver {
 
   @Query(() => [Recipe])
   recipes() {
-    const food = Recipe.find({ select: ["id", "name", "description"] });
+    const food = Recipe.find({
+      select: ["id", "name", "description", "picture"],
+    });
 
     return food;
   }

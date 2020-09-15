@@ -1,7 +1,9 @@
 import * as React from "react";
+import { useQuery, gql } from "@apollo/client";
+
 import RecipeCard from "./recipeCard";
 
-export interface Recipe {
+export interface IRecipe {
   id: number;
   name: string;
   description: string;
@@ -9,7 +11,48 @@ export interface Recipe {
   ingredients?: Array<string>;
 }
 
-export const mockRecipes: Array<Recipe> = [
+// query for all recipes from db, returning name, id, description
+const ALL_RECIPES = gql`
+  query {
+    recipes {
+      name
+      description
+      id
+      picture
+    }
+  }
+`;
+
+const AllRecipes: React.FunctionComponent<Element> = () => {
+  const { loading, error, data } = useQuery(ALL_RECIPES);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return (
+    <div className="text-center">
+      <h1 className="text-3xl">Available recipes</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6">
+        {data.recipes &&
+          data.recipes.map((recipe: IRecipe) => {
+            return (
+              <RecipeCard
+                key={recipe.id}
+                id={recipe.id}
+                name={recipe.name}
+                description={recipe.description}
+                picture={recipe.picture}
+              />
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
+export default AllRecipes;
+
+export var mockRecipes: Array<IRecipe> = [
   {
     id: 1,
     name: "Pork thing1",
@@ -54,7 +97,8 @@ export const mockRecipes: Array<Recipe> = [
   },
 ];
 
-export const getRecipes = (recipes: Array<Recipe>): Promise<Array<Recipe>> => {
+// this function was written to provide mock data before we set up our graphql api
+export var getRecipes = (recipes: Array<IRecipe>): Promise<Array<IRecipe>> => {
   return new Promise((resolve, reject) => {
     try {
       setTimeout(() => {
@@ -65,39 +109,3 @@ export const getRecipes = (recipes: Array<Recipe>): Promise<Array<Recipe>> => {
     }
   });
 };
-
-const AllRecipes: React.FunctionComponent<Element> = () => {
-  const [recipes, setRecipes] = React.useState<Recipe[] | null>(null);
-
-  React.useEffect(() => {
-    getRecipes(mockRecipes)
-      .then((recipes) => {
-        setRecipes(recipes);
-      })
-      .catch((err: Error) => {
-        console.error(err);
-      });
-  }, []);
-
-  return (
-    <div className="text-center">
-      <h1 className="text-3xl">Available recipes</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 p-6">
-        {recipes &&
-          recipes.map((recipe) => {
-            return (
-              <RecipeCard
-                key={Math.random()}
-                id={recipe.id}
-                name={recipe.name}
-                description={recipe.description}
-                picture={recipe.picture}
-              />
-            );
-          })}
-      </div>
-    </div>
-  );
-};
-
-export default AllRecipes;

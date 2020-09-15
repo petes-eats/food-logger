@@ -20,7 +20,7 @@ const responsive = {
   },
 };
 
-export default function landingPage(props: any): any {
+export default function LandingPage(props: any): any {
   return (
     <div className="text-center">
       <h1>Landing Page</h1>
