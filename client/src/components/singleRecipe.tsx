@@ -1,43 +1,54 @@
 import React from "react";
-import { IRecipe } from "./allRecipes";
-import { mockRecipes } from "./allRecipes";
+import { useQuery, gql } from "@apollo/client";
 
-const getSingleRecipe = (recipeId: number): Promise<IRecipe> => {
-  return new Promise((resolve, reject) => {
-    try {
-      setTimeout(() => {
-        resolve(mockRecipes[recipeId - 1]);
-      }, 1000);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
+// import { IRecipe } from "./allRecipes";
+// import { mockRecipes } from "./allRecipes";
 
 interface Props {
   recipeId: number;
 }
 
 export const SingleRecipe: React.FunctionComponent<Props> = ({ recipeId }) => {
-  const [recipe, setRecipe] = React.useState<IRecipe | null>(null);
+  const SINGLE_RECIPE = gql`
+  query {
+    findRecipe(id: ${recipeId}) {
+      name
+      description
+      id
+      picture
+    }
+  }
+`;
 
-  React.useEffect(() => {
-    getSingleRecipe(recipeId)
-      .then((recipe) => setRecipe(recipe))
-      .catch((error) => console.error(error));
-  }, [recipeId]);
+  const { loading, error, data } = useQuery(SINGLE_RECIPE);
 
-  return recipe ? (
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return data.findRecipe ? (
     <div>
-      <h1>{recipe.name}</h1>
+      <h1>{data.findRecipe.name}</h1>
+      <h2>{data.findRecipe.description}</h2>
       <ul>
-        {recipe.ingredients &&
-          recipe.ingredients.map((ingredient) => {
-            return <li key={recipe.id}>{ingredient}</li>;
+        {data.findRecipe.ingredients &&
+          data.findRecipe.ingredients.map((ingredient: string) => {
+            return <li key={data.findRecipe.id}>{ingredient}</li>;
           })}
       </ul>
 
-      <h2>{recipe.picture}</h2>
+      <h2>{data.findRecipe.picture}</h2>
     </div>
   ) : null;
 };
+
+// var getSingleRecipe = (recipeId: number): Promise<IRecipe> => {
+//   return new Promise((resolve, reject) => {
+//     try {
+//       setTimeout(() => {
+//         resolve(mockRecipes[recipeId - 1]);
+//       }, 1000);
+//     } catch (err) {
+//       reject(err);
+//     }
+//   });
+// };

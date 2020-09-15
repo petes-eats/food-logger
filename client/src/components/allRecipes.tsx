@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useQuery, gql } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import RecipeCard from "./recipeCard";
 
@@ -36,13 +37,15 @@ const AllRecipes: React.FunctionComponent<Element> = () => {
         {data.recipes &&
           data.recipes.map((recipe: IRecipe) => {
             return (
-              <RecipeCard
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                description={recipe.description}
-                picture={recipe.picture}
-              />
+              <Link to={`/allRecipes/${recipe.id}`}>
+                <RecipeCard
+                  key={recipe.id}
+                  id={recipe.id}
+                  name={recipe.name}
+                  description={recipe.description}
+                  picture={recipe.picture}
+                />
+              </Link>
             );
           })}
       </div>
