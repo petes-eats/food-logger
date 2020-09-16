@@ -22,34 +22,14 @@ const responsive = {
 
 export default function LandingPage(props: any): any {
   return (
-    <div className="text-center">
+    <div className="text-center responsive">
       <h1>Landing Page</h1>
 
       <LandingPageCarousel />
 
-      <div className="grid grid-cols-2">
-        <div className="text-center font-bold text-3xl">Chicken Dishes</div>
-
-        <div className="align-center">
-          <img
-            className="object-contain h-48 w-full"
-            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
-            alt=""
-          />
-        </div>
-
-        <div className="align-center">
-          <img
-            className="object-contain h-48 w-full"
-            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
-            alt=""
-          />
-        </div>
-
-        <div className="text-center bg-gray-200 font-bold text-3xl">Vegan</div>
-
-        <div className="text-center bg-gray-200 font-bold text-3xl">
-          Breakfast Recipes
+      <div className="grid grid-cols-2 place-items-center">
+        <div className="font-bold text-3xl bg-red-600">
+          <h1 className="text-center">Chicken Dishes</h1>
         </div>
 
         <div className="align-center">
@@ -68,8 +48,32 @@ export default function LandingPage(props: any): any {
           />
         </div>
 
-        <div className="text-center bg-gray-200 font-bold text-3xl">
-          Vegetarian
+        <div className="font-bold text-3xl bg-yellow-800">
+          <h1 className="text-center">Vegan</h1>
+        </div>
+
+        <div className="font-bold text-3xl bg-yellow-400">
+          <h1 className="text-center">Breakfast Recipes</h1>
+        </div>
+
+        <div className="align-center">
+          <img
+            className="object-contain h-48 w-full"
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          />
+        </div>
+
+        <div className="align-center">
+          <img
+            className="object-contain h-48 w-full"
+            src="https://i.gyazo.com/382874084392664241454615805458c2.png"
+            alt=""
+          />
+        </div>
+
+        <div className="font-bold text-3xl bg-green-500">
+          <h1 className="text-center">Vegetarian</h1>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const LandingPageCarousel = () => {
   return (
-    <div class="carousel relative shadow-2xl bg-white">
+    <div class="carousel relative bg-black">
       <div class="carousel-inner relative overflow-hidden w-full">
         <input
           class="carousel-open"
